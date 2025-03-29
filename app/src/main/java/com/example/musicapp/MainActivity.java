@@ -27,25 +27,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mAuth = FirebaseAuth.getInstance();
-        String email = "giang14@gmai.com";
-        String password = "Giang@14092004";
 
-        mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    Log.d("Main", "createUserWithEmail: success ");
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    Toast.makeText(getApplicationContext(), user.getEmail() , Toast.LENGTH_SHORT).show();
-                    //updateUI(user);
-                } else {
-                    Log.w("Main", "createUserWithEmail: failure ", task.getException());
-                    Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 
-                }
-            }
-        });
 
     }
 }

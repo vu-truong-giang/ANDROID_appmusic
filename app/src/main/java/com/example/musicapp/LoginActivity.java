@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -85,10 +86,23 @@ public class LoginActivity extends AppCompatActivity {
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     Toast.makeText(getApplicationContext(), "Đăng nhập thành công! Chào : " + user.getEmail(), Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(LoginActivity.this , MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                    db.collection("users" ).document(user.getUid()).get()
+                            .addOnSuccessListener(documentSnapshot -> {
+                                boolean isNewUser = documentSnapshot.getBoolean("isNewUser");
+                                if(isNewUser) {
+                                    Intent intent = new Intent(LoginActivity.this, InformationActivity.class);
+                                    startActivity(intent);
 
+                                    finish();
+                                } else {
+                                    Intent intent = new Intent(LoginActivity.this , MainActivity.class);
+                                    startActivity(intent);
+
+                                    finish();
+                                }
+                    })
+                            .addOnFailureListener(e -> Toast.makeText(LoginActivity.this, "Lỗi lấy dữ liệu từ Firestore", Toast.LENGTH_SHORT).show());
                 } else {
                     Toast.makeText(LoginActivity.this, "Đăng nhạp thất bại! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="#FAFAFA"
+    android:gravity="center">
+
+    <!-- Ảnh đại diện + Nút chọn ảnh -->
+    <LinearLayout
+        android:layout_width="315dp"
+        android:layout_height="277dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imgAvatar"
+            android:layout_width="293dp"
+            android:layout_height="203dp"
+            android:layout_marginBottom="8dp"
+            android:scaleType="centerCrop" />
+
+        <!-- Layout chứa hai nút "Đổi ảnh" và "Chọn ảnh" -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnTakePhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="Chụp ảnh" />
+
+            <Button
+                android:id="@+id/btnSelectImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#6200EE"
+                android:text="Chọn ảnh"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Họ tên -->
+    <EditText
+        android:id="@+id/edtFullName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập họ tên"
+        android:padding="12dp"
+        android:minHeight="48dp"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Số điện thoại -->
+    <EditText
+        android:id="@+id/edtPhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập số điện thoại"
+        android:padding="12dp"
+        android:inputType="phone"
+        android:minHeight="48dp"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"/>
+
+    <!-- Nút Lưu -->
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lưu thông tin"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#FF6200EE"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"/>
+</LinearLayout>
